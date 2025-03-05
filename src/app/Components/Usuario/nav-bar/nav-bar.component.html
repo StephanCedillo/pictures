@@ -1,0 +1,16 @@
+<div class="navbar">
+    <div class="title">
+        <img src="https://i.pinimg.com/736x/a6/2c/e1/a62ce101b00f39c996c5228fb9e1ee86.jpg" alt="Guawpaw Logo">
+        <h1>Picture</h1>
+    </div>
+
+    <!-- Botón hamburguesa, solo visible en pantallas pequeñas -->
+    <button class="hamburger" (click)="toggleMenu()">&#9776;</button>
+
+    <nav class="nav" [class.active]="menuActive">
+        <ul>
+            <li><button (click)="scrollTo('filtros')">Filtros</button></li>
+            <li><button (click)="scrollTo('galeria')">Galeria</button></li>
+        </ul>
+    </nav>
+</div>

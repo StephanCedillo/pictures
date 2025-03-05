@@ -1,0 +1,308 @@
+/* Contenedor de la galería */
+.gallery {
+  display: grid;
+  grid-template-columns: 1fr; /* Una columna por defecto */
+  gap: 50px; /* Agregar espacio entre las imágenes */
+  padding: 20px;
+  transition: 0.3s;
+}
+
+/* Estilos para pantallas medianas y grandes */
+@media (min-width: 768px) {
+  .gallery {
+    grid-template-columns: repeat(2, 1fr); /* Dos columnas en pantallas medianas */
+  }
+}
+
+@media (min-width: 1024px) {
+  .gallery {
+    grid-template-columns: repeat(3, 1fr); /* Tres columnas en pantallas grandes */
+  }
+}
+
+@media (min-width: 1440px) {
+  .gallery {
+    grid-template-columns: repeat(4, 1fr); /* Cuatro columnas en pantallas muy grandes */
+  }
+}
+
+/* Efecto hover sobre las imágenes (en escala de grises) */
+.gallery:hover .gallery__image {
+  filter: grayscale(1);
+}
+
+.gallery__link {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  height: auto; /* Permite que la altura sea dinámica */
+  max-height: 300px; /* Limita la altura máxima de las imágenes */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 10px; /* Bordes redondeados para mejorar la estética */
+}
+
+.gallery__link:hover {
+  transform: scale(1.05); /* Efecto de aumento al hacer hover */
+}
+
+.gallery__link:hover .gallery__image {
+  filter: grayscale(0); /* Eliminar filtro al hacer hover */
+}
+
+.gallery__link:hover .gallery__caption {
+  opacity: 1; /* Mostrar el caption al hacer hover */
+}
+
+.gallery__thumb {
+  position: relative;
+  height: 100%;
+}
+
+/* Estilos de la imagen */
+.gallery__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px; /* Bordes redondeados en las imágenes */
+  transition: transform 0.3s ease;
+}
+
+/* Efecto de zoom al hacer hover sobre la imagen */
+.gallery__image:hover {
+  transform: scale(1.1);
+}
+
+/* Estilo de la leyenda (caption) */
+.gallery__caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  font-family: 'Helvetica', sans-serif;
+  font-size: 14px;
+  color: white;
+  opacity: 0;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, rgba(255, 255, 255, 0) 100%);
+  transition: opacity 0.4s ease;
+}
+
+.gallery__link:hover .gallery__caption {
+  opacity: 1;
+}
+
+.gallery__caption p {
+  margin: 0;
+  font-weight: bold;
+  line-height: 1.3;
+}
+
+/* Estilos para los filtros */
+.filtros {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+  background-color: #171717;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  flex-wrap: wrap; /* Permite que los filtros se acomoden si el espacio es reducido */
+}
+
+.filtros input {
+  padding: 12px 20px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 350px; /* Limitar el tamaño máximo de los inputs */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  background-color: #fff;
+  margin-bottom: 10px; /* Agregar un poco de espacio entre los filtros */
+}
+
+.filtros input:focus {
+  border-color: #4CAF50;
+  outline: none;
+  box-shadow: 0 0 8px rgba(76, 175, 80, 0.5); /* Efecto de resplandor al enfocar */
+}
+
+.filtros input::placeholder {
+  color: #aaa; /* Color más suave para el texto del placeholder */
+}
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 768px) {
+  .filtros {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .filtros input {
+    width: 100%;
+    max-width: 90%; /* Mejor ajuste para pantallas pequeñas */
+  }
+}
+
+/* Ajustes para pantallas grandes */
+@media (min-width: 1024px) {
+  .filtros {
+    gap: 30px; /* Aumenta el espacio entre los filtros */
+  }
+}
+* {
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  background-color: white;
+  font-family: 'Knewave', cursive;
+}
+
+label {
+  width: 100%;
+  max-width: 300px;
+  position: relative;
+}
+
+input {
+  width: 100%;
+  display: flex;
+  padding: 15px;
+  background-color: white;
+  border: 2px solid black;
+  color: #111;
+  font-size: 15px;
+  box-shadow: 3px 1px 0px 2px, 0px -1px 0px 2px rgba(0, 0, 0, 0.62);
+  height: 38px;
+  font-family: 'Knewave', cursive;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+input:focus,
+input:valid {
+  outline: none;
+}
+
+input:focus ~ ul li,
+input:valid ~ ul li {
+  filter: blur(20px);
+  transform: translate(0, -35px) rotate(-210deg);
+}
+
+input:focus ~ ul li::after,
+input:valid ~ ul li::after {
+  filter: blur(0);
+  transform: scale(1) rotate(0);
+}
+
+ul {
+  position: absolute;
+  top: 38px;
+  left: -4px;
+  margin: 0;
+  list-style: none;
+  padding-left: 22px;
+  display: flex;
+  pointer-events: none;
+  transition: 200ms;
+}
+
+ul li {
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: transparent;
+  pointer-events: none;
+  transition: 500ms ease-in-out;
+}
+
+ul li::selection {
+  color: transparent;
+}
+
+ul li::before,
+ul li::after {
+  color: black;
+  position: absolute;
+  transition: 500ms ease-in-out;
+}
+
+ul li::before {
+  top: -20px;
+}
+
+ul li::after {
+  top: -63px;
+  transform: scale(0) rotate(210deg);
+  filter: blur(20px);
+}
+
+/* Manually mapping each character "s", "e", "a", "r", "c", "h" for the list items */
+ul li[data-char="s"]::before {
+  content: 's';
+  transition-delay: 200ms;
+}
+
+ul li[data-char="e"]::before {
+  content: 'e';
+  transition-delay: 400ms;
+}
+
+ul li[data-char="a"]::before {
+  content: 'a';
+  transition-delay: 600ms;
+}
+
+ul li[data-char="r"]::before {
+  content: 'r';
+  transition-delay: 800ms;
+}
+
+ul li[data-char="c"]::before {
+  content: 'c';
+  transition-delay: 1000ms;
+}
+
+ul li[data-char="h"]::before {
+  content: 'h';
+  transition-delay: 1200ms;
+}
+
+ul li[data-char="s"]::after {
+  left: 0px;
+  color: #666;
+}
+
+ul li[data-char="e"]::after {
+  left: 12px;
+  color: #666;
+}
+
+ul li[data-char="a"]::after {
+  left: 24px;
+  color: #666;
+}
+
+ul li[data-char="r"]::after {
+  left: 36px;
+  color: #666;
+}
+
+ul li[data-char="c"]::after {
+  left: 48px;
+  color: #666;
+}
+
+ul li[data-char="h"]::after {
+  left: 60px;
+  color: #666;
+}
+

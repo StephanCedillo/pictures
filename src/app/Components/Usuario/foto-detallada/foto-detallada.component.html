@@ -1,0 +1,28 @@
+<div class="photo-detail">
+    <div *ngIf="photo">
+      <h2>{{ photo.title }}</h2>
+      <img 
+        [src]="photo.url" 
+        [style.filter]="filter"
+        [style.opacity]="opacity"/>
+    </div>
+  
+    <!-- Controles para aplicar efectos -->
+    <div class="controls">
+      <label for="filter">Filtro:</label>
+      <select id="filter" [(ngModel)]="filter">
+        <option value="">Ninguno</option>
+        <option value="grayscale(100%)">Grayscale</option>
+        <option value="sepia(100%)">Sepia</option>
+        <option value="blur(5px)">Blur</option>
+        <!-- Agrega más filtros si lo deseas -->
+      </select>
+      
+  
+      <label for="opacity">Opacidad:</label>
+      <input id="opacity" type="range" min="0" max="1" step="0.1" [(ngModel)]="opacity">
+      <button (click)="updatePhoto()">Actualizar</button>
+    </div>
+    
+  </div>
+  
