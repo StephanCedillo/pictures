@@ -53,6 +53,7 @@ loadPhotoDetails(photoId: string): void {
         this.loadPhotoDetails(this.photoId);
       }
     });
+    
   }
 
   applyFilter(event: Event): void {

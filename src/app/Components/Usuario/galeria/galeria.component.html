@@ -20,8 +20,7 @@
   <br>
   <div class="fila" *ngFor="let group of groupPhotos(filteredPhotos, 3)" class="gallery">
     <div class="foto-container" *ngFor="let photo of group" class="gallery__link">
-      <img [src]="photo.url" alt="Foto" (click)="viewPhotoDetail(photo.id)" [style.filter]="photo.filter" 
-        [style.opacity]="photo.opacity" class="gallery__thumb" class="gallery__image">
+      <img [src]="photo.url" alt="Foto"  >
     
     <div class="gallery__caption">
       <p class="titulo" >{{ photo.title }}</p>
